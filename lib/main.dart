@@ -41,7 +41,9 @@ import 'bloc/implementation/FilterRestaurantImplement.dart';
 //
 //  });
 //}
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   BlocSupervisor.delegate = MyBlocDelegate();
   runApp(MyApp());
 }
@@ -64,12 +66,12 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Firebase.initializeApp().whenComplete(() {
-      _firebaseAuth = FirebaseAuth.instance;
-      _firestore = FirebaseFirestore.instance;
-      _fireAuthRepo = FireAuthRepo(_firebaseAuth, _firestore);
-      setState(() {});
-    });
+    // Firebase.initializeApp().whenComplete(() {
+    _firebaseAuth = FirebaseAuth.instance;
+    _firestore = FirebaseFirestore.instance;
+    _fireAuthRepo = FireAuthRepo(_firebaseAuth, _firestore);
+    //   setState(() {});
+    // });
     client = getDio();
     yelpClient = getYelpDio();
     _selectionReop = SelectionImplement(client);
