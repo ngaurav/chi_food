@@ -171,7 +171,8 @@ class RestaurantPageHeader implements SliverPersistentHeaderDelegate {
                                                 TextStyle(color: Colors.black),
                                           ),
                                           Text(index
-                                              .restaurants.user_rating.votes)
+                                              .restaurants.user_rating.votes
+                                              .toString())
                                         ],
                                       ),
                                       Row(

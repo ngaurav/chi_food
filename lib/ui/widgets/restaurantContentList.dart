@@ -23,12 +23,12 @@ class _RestaurantContentListState extends State<RestaurantContentList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-
         itemBuilder: _build,
         itemCount: widget.restaurantList.length,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics());
   }
+
   Widget _build(BuildContext context, int index) {
     Restaurants curRes = widget.restaurantList[index];
     return GestureDetector(
@@ -36,7 +36,8 @@ class _RestaurantContentListState extends State<RestaurantContentList> {
         BlocProvider.of<RestaurantBloc>(context)
           ..add(LoadRestaurantAllInfoEvent(curRes));
         BlocProvider.of<MenuBloc>(context).add(LoadMenuEvent());
-        Navigator.pushNamed(context,'/Restaurant',arguments: RestaurantArg(index%4,curRes));
+        Navigator.pushNamed(context, '/Restaurant',
+            arguments: RestaurantArg(index % 4, curRes));
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
@@ -73,7 +74,8 @@ class _RestaurantContentListState extends State<RestaurantContentList> {
                         height: 5,
                       ),
                       ConstrainedBox(
-                        constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width*0.7),
+                        constraints: BoxConstraints(
+                            maxWidth: MediaQuery.of(context).size.width * 0.7),
                         child: Text(
                           curRes.location.address,
                           overflow: TextOverflow.ellipsis,
@@ -113,7 +115,7 @@ class _RestaurantContentListState extends State<RestaurantContentList> {
                   Row(
                     children: <Widget>[
                       Icon(Icons.people),
-                      Text(curRes.user_rating.votes)
+                      Text(curRes.user_rating.votes.toString())
                     ],
                   ),
                   Row(
@@ -131,4 +133,3 @@ class _RestaurantContentListState extends State<RestaurantContentList> {
     );
   }
 }
-

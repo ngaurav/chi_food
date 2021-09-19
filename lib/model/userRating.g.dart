@@ -28,8 +28,7 @@ class _$UserRatingSerializer implements StructuredSerializer<UserRating> {
       serializers.serialize(object.rating_color,
           specifiedType: const FullType(String)),
       'votes',
-      serializers.serialize(object.votes,
-          specifiedType: const FullType(String)),
+      serializers.serialize(object.votes, specifiedType: const FullType(int)),
     ];
 
     return result;
@@ -60,7 +59,7 @@ class _$UserRatingSerializer implements StructuredSerializer<UserRating> {
           break;
         case 'votes':
           result.votes = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(int)) as int;
           break;
       }
     }
@@ -77,7 +76,7 @@ class _$UserRating extends UserRating {
   @override
   final String rating_color;
   @override
-  final String votes;
+  final int votes;
 
   factory _$UserRating([void Function(UserRatingBuilder) updates]) =>
       (new UserRatingBuilder()..update(updates)).build();
@@ -151,9 +150,9 @@ class UserRatingBuilder implements Builder<UserRating, UserRatingBuilder> {
   String get rating_color => _$this._rating_color;
   set rating_color(String rating_color) => _$this._rating_color = rating_color;
 
-  String _votes;
-  String get votes => _$this._votes;
-  set votes(String votes) => _$this._votes = votes;
+  int _votes;
+  int get votes => _$this._votes;
+  set votes(int votes) => _$this._votes = votes;
 
   UserRatingBuilder();
 

@@ -1,4 +1,3 @@
-
 import 'package:chifood/model/restaurants.dart';
 import 'package:chifood/utils/priceDollor.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,17 +33,19 @@ class RestaurantInfoCard extends StatelessWidget {
                     Text(
                       curRes.location.address,
                       style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey),
+                          fontWeight: FontWeight.w600, color: Colors.grey),
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(
+                      height: 5,
+                    ),
                   ],
                 ),
-
               ],
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -56,7 +57,11 @@ class RestaurantInfoCard extends StatelessWidget {
                     color: Colors.orange,
                     size: 18.0,
                   ),
-                  Text(curRes.user_rating.aggregate_rating, style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)
+                  Text(
+                    curRes.user_rating.aggregate_rating,
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  )
                 ],
               ),
               Row(
@@ -64,16 +69,22 @@ class RestaurantInfoCard extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     'Votes:',
-
                   ),
-                  Text(curRes.user_rating.votes, style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)
+                  Text(
+                    curRes.user_rating.votes.toString(),
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  )
                 ],
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text('Average spent:'),
-                  Text(getAvergePayIcon(curRes.price_range),style: TextStyle(fontWeight: FontWeight.bold),)
+                  Text(
+                    getAvergePayIcon(curRes.price_range),
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )
                 ],
               ),
             ],
