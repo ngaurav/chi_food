@@ -13,17 +13,16 @@ class RestaurantList extends StatefulWidget {
   List<Restaurants> restaurantList;
   List<GZXDropDownHeaderItem> filterChoice;
   Widget handler;
-  RestaurantList({this.restaurantList,this.handler,this.filterChoice});
+  RestaurantList({this.restaurantList, this.handler, this.filterChoice});
 
   @override
   _RestaurantListState createState() => _RestaurantListState();
 }
 
 class _RestaurantListState extends State<RestaurantList> {
-
   @override
   Widget build(BuildContext context) {
-    List<String> choices=turnOrder(widget.filterChoice);
+    List<String> choices = turnOrder(widget.filterChoice);
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
       decoration: BoxDecoration(
@@ -50,11 +49,14 @@ class _RestaurantListState extends State<RestaurantList> {
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
                   ),
-                  choices.length!=0?Text('Fileter by: ${choices.join(',')}'):Text('No Filter')
+                  choices.length != 0
+                      ? Text('Fileter by: ${choices.join(',')}')
+                      : Text('No Filter')
                 ],
               ),
               GestureDetector(
-                onTap: ()=>Navigator.of(context).pushNamed('/FilterRestaurants'),
+                onTap: () =>
+                    Navigator.of(context).pushNamed('/FilterRestaurants'),
                 child: Container(
                   padding: EdgeInsets.all(10.0),
                   child: Icon(Icons.sort),
@@ -67,15 +69,20 @@ class _RestaurantListState extends State<RestaurantList> {
               )
             ],
           ),
-          widget.restaurantList==null?widget.handler:RestaurantContentList(widget.restaurantList)
+          widget.restaurantList == null
+              ? widget.handler
+              : RestaurantContentList(widget.restaurantList)
         ],
       ),
     );
   }
 
-  List<String> turnOrder(List<GZXDropDownHeaderItem> source){
-   return source.where((i) =>(i.title!='Distance'&&i.title!='Category'&&i.title!='Cuisine')).map((e) => e?.title);
+  List<String> turnOrder(List<GZXDropDownHeaderItem> source) {
+    return source
+        .where((i) => (i.title != 'Distance' &&
+            i.title != 'Category' &&
+            i.title != 'Cuisine'))
+        .map((e) => e?.title)
+        .toList();
   }
-
-
 }
