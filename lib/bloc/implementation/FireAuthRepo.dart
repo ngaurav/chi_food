@@ -67,14 +67,14 @@ class FireAuthRepo implements FireAuth {
         _fireStore.doc(FirestorePaths.userPath(firebaseUser.uid));
     final snapshot = await documentReference.get();
     BaseUser user;
-    if (snapshot.data == null) {
+    if (snapshot.data() == null) {
       final a = standardSerializers.serializeWith(BaseUser.serializer,
           userInfo.rebuild((a) => a..uid = firebaseUser.uid));
       await documentReference.set(a);
       user = userInfo;
     } else {
       user = standardSerializers.deserializeWith(
-          BaseUser.serializer, snapshot.data);
+          BaseUser.serializer, snapshot.data());
     }
 
     return user;
